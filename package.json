@@ -1,13 +1,13 @@
 {
-  "name": "videogular2",
-  "version": "0.0.0-semantically-released",
+  "name": "@clickup/videogular2",
+  "version": "7.0.1",
   "description": "Videogular is a video application framework for desktop and mobile powered by Angular",
   "repository": {
     "type": "git",
     "url": "https://github.com/videogular/videogular2"
   },
   "peerDependencies": {
-    "@angular/core": "^8.0.0",
+    "@angular/core": ">=8.0.0",
     "rxjs": "^6.3.0"
   },
   "devDependencies": {
@@ -38,6 +38,7 @@
     "karma-firefox-launcher": "^1.1.0",
     "karma-jasmine": "^2.0.1",
     "karma-spec-reporter": "^0.0.32",
+    "ng-packagr": "5.7.1",
     "npm-run-all": "4.1.5",
     "reflect-metadata": "^0.1.10",
     "remap-istanbul": "0.9.5",
@@ -53,8 +54,7 @@
   },
   "scripts": {
     "prebuild": "npm run clean",
-    "build": "ngc",
-    "postbuild": "npm test",
+    "build": "ng-packagr -p package.json && cp -R fonts dist/fonts",
     "build:travis": "ngc",
     "postbuild:travis": "npm run test",
     "clean": "rimraf -rf ./src/**/*.js && rimraf -rf ./src/**/*.d.ts && rimraf -rf ./compiled",
@@ -74,9 +74,6 @@
       "pre-commit": "npm test",
       "commit-msg": "validate-commit-msg"
     }
-  },
-  "engines": {
-    "node": ">=10.9.0 <11.0.0"
   },
   "keywords": [
     "video",
@@ -133,5 +130,10 @@
       "autoFix": false
     }
   },
-  "homepage": "http://videogular.com"
+  "homepage": "http://videogular.com",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public_api.ts"
+    }
+  }
 }
